@@ -20,6 +20,11 @@ public class FPSWidget implements HudWidget {
     }
 
     @Override
+    public String getName() {
+        return "fps";
+    }
+
+    @Override
     public int getX() {
         return x;
     }

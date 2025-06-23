@@ -12,12 +12,15 @@ public class WidgetManager {
     private static final List<String> widgets = List.of("fps", "clock");
 
     public static void register(HudWidget widget, int x, int y) {
-        widgets.add(hudWidgets.toString());
+        widget.setPosition(x, y);
+        hudWidgets.add(widget);
     }
 
     public static void renderAll(DrawContext context) {
-        widgets.forEach(hudWidget -> hudWidgets.render(context, widget.getX(), widget.getY()));
+        hudWidgets.forEach(widget -> widget.render(context, widget.getX(), widget.getY()));
     }
+
+
 
     public static List<HudWidget> getWidgets() {
         return hudWidgets;

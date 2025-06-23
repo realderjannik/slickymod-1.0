@@ -25,6 +25,11 @@ public class ClockWidget implements HudWidget {
     }
 
     @Override
+    public String getName() {
+        return "clock";
+    }
+
+    @Override
     public int getX() {
         return 0;
     }

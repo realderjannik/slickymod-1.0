@@ -7,6 +7,8 @@ import net.minecraft.text.Text;
 public class WidgetOptionsScreen extends Screen {
 
     private final HudWidget widget;
+    private String selectedWidget = null;
+
 
     // Standard-Konstruktor für allgemeinen Zugriff
     public WidgetOptionsScreen() {
@@ -31,20 +33,22 @@ public class WidgetOptionsScreen extends Screen {
         int buttonHeight = 20;         // Höhe eines Buttons
         int i = 0;                     // Zähler für Positionierung
 
-        for (String widgetName : WidgetManager.getWidgets()) {
+        for (HudWidget widget : WidgetManager.getWidgets()) {
             int y = startY + i * (buttonHeight + 5); // Y-Position jedes Buttons
 
-            // Erstelle einen Button für das Widget
             ButtonWidget button = ButtonWidget.builder(
-                    Text.literal(widgetName),       // Text auf dem Button
-                    btn -> {                        // Lambda bei Klick
-                        this.selectedWidget = widgetName; // Merken, welches Widget gerade bearbeitet wird
+                    Text.literal(widget.getName()), // getName() z. B. „FPS“, „Clock“
+                    btn -> {
+                        this.selectedWidget = widget.getName();
+                        // Optional: neuen Screen öffnen:
+                        // this.client.setScreen(new WidgetEditorScreen(widget));
                     }
             ).dimensions(sidebarX, y, 100, buttonHeight).build();
 
-            this.addDrawableChild(button); // Füge den Button zum GUI hinzu
+            this.addDrawableChild(button);
             i++;
         }
+
     }
 
 }
